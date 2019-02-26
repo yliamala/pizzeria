@@ -3,16 +3,19 @@
 namespace app\order\payment;
 
 
+use app\order\Order;
+
 class Cash extends AbstractPayment
 {
     const MAX_AMOUNT = 5000;
 
     protected $name = 'cash';
+    protected $setPaid = true;
 
-    public function enable()
+    public function enable(Order $order)
     {
-        $customer = $this->order->getCart()->getCustomer();
-        if ($this->order->getTotalAmount() >= self::MAX_AMOUNT && !$customer->getAlwaysCash()) {
+        $customer = $order->getCart()->getCustomer();
+        if ($order->getTotalAmount() >= self::MAX_AMOUNT && !$customer->getAlwaysCash()) {
             return false;
         }
         return true;

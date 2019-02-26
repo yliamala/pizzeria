@@ -3,6 +3,7 @@
 namespace app\order;
 
 use app\order\payment\AbstractPayment;
+use app\user\Employee;
 
 class Order
 {
@@ -19,6 +20,7 @@ class Order
     private $cook;
     private $manager;
     private $discount = 0;
+    private $paid = false;
 
     public function __construct(Cart $cart)
     {
@@ -53,7 +55,8 @@ class Order
 
     public function setPayment(AbstractPayment $pay)
     {
-        $this->payment = $pay->getName();
+        $pay->enable($this);
+        $this->payment = $pay;
     }
 
     public function getCart()
@@ -89,5 +92,28 @@ class Order
     public function getManager()
     {
         return $this->manager;
+    }
+
+    public function getPaid()
+    {
+        return $this->paid;
+    }
+
+    public function setPaid(Employee $employee)
+    {
+        if (!$this->payment->getSetPaid()) throw new \Exception('For cash only.');
+        if (!$employee->getAllowPaid()) throw new \Exception('You can not pay the order.');
+        $this->paid = true;
+    }
+
+    public function changeStatus(Employee $employee, $status)
+    {
+        if (($employee->getConfirmedOrder() && $status == Order::CONFIRMED_STATUS) ||
+            ($employee->getDeliveredOrder() && $status == Order::DELIVERED_STATUS))
+        {
+            $this->setStatus($status);
+        } else {
+            throw new \Exception('You can not change status.');
+        }
     }
 }

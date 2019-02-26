@@ -40,9 +40,11 @@ try{
     $order->getPizzeria(new \app\pizzeria\Pizzeria('City'));
     $payment = new \app\order\payment\Cash($order);
     $order->setPayment($payment);
-    (new \app\order\SaveOrder($order))->save();
-    $order->setCook(new \app\user\Cook('Piter'));
-    $order->setManager(new \app\user\Manager('Michel'));
+
+    $cook = new \app\user\Cook('Piter');
+    $order->setCook($cook);
+    $manager = new \app\user\Manager('Michel');
+    $order->setManager($manager);
 
     $surprise = new \app\order\Surprise($order);
     if ($surprise) {
@@ -54,8 +56,18 @@ try{
     echo 'Discount: ' . $order->getDiscount() . "\n";
     echo 'Total amount: ' . $order->getTotalAmount() . "\n";
 
+    // Save order
+    (new \app\order\SaveOrder($order))->save();
+
+
+    $order->changeStatus($cook, \app\order\Order::CONFIRMED_STATUS);
+    $order->changeStatus($manager, \app\order\Order::DELIVERED_STATUS);
     $vip->viewCurrentStatusOrder();
     $vip->viewHistoryOrder();
+
+    // Paid order
+    $order->setPaid($manager);
+    //print_r($order);exit;
 } catch (Exception $e) {
     echo 'Error: ';
     print_r($e->getMessage());

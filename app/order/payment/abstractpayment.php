@@ -8,15 +8,9 @@ use app\order\Order;
 abstract class AbstractPayment
 {
     protected $name;
-    protected $order;
+    protected $setPaid = false;
 
-    public function __construct(Order $order)
-    {
-        $this->order = $order;
-        if (!$this->enable()) throw new \Exception('You can not payment this method.');
-    }
-
-    public function enable()
+    public function enable(Order $order)
     {
         return true;
     }
@@ -27,5 +21,10 @@ abstract class AbstractPayment
             throw new \Exception('Payment method name is not set');
         }
         return $this->name;
+    }
+
+    public function getSetPaid()
+    {
+        return $this->setPaid;
     }
 }
