@@ -9,7 +9,7 @@ class Pizza implements InterfaceProduct
     private $dough;
     private $size;
     private $ingredient;
-    private $type = InterfaceProduct::UNIQUE_PRODUCT;
+    private $type = InterfaceProduct::UNIQUE_PRODUCT_TYPE;
 
     public function __construct($dough, $size)
     {

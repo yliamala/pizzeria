@@ -4,9 +4,9 @@ namespace app\product;
 
 interface InterfaceProduct
 {
-    const BASIC_PRODUCT = 'basic';
-    const UNIQUE_PRODUCT = 'unique';
-    const ADDITIONAL_PRODUCT = 'additional';
+    const BASIC_PRODUCT_TYPE = 'basic';
+    const UNIQUE_PRODUCT_TYPE = 'unique';
+    const ADDITIONAL_PRODUCT_TYPE = 'additional';
 
     public function getPrice();
 

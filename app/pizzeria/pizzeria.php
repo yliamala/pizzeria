@@ -6,10 +6,12 @@ class Pizzeria
 {
     private $name;
     private $address;
+    private $sendEmail;
 
-    public function __construct($name)
+    public function __construct($name, $sendEmail = false)
     {
         $this->name = $name;
+        $this->sendEmail = $sendEmail;
         $this->setAddress();
     }
 
@@ -26,5 +28,10 @@ class Pizzeria
         $listPizzeria = $this->getPizzeriaList();
         if (empty($listPizzeria[$this->name])) throw new \Exception($this->name . ' pizzeria is not exist.');
         $this->address = $listPizzeria[$this->name];
+    }
+
+    public function getSendEmail()
+    {
+        return $this->sendEmail;
     }
 }

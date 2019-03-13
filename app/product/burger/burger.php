@@ -10,7 +10,7 @@ class Burger implements InterfaceProduct
     private $degreeRoasting;
     private $cheese = false;
     private $doubleCutlet = false;
-    private $type = InterfaceProduct::ADDITIONAL_PRODUCT;
+    private $type = InterfaceProduct::ADDITIONAL_PRODUCT_TYPE;
 
     public function __construct($bun, $degreeRoasting)
     {

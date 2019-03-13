@@ -33,11 +33,11 @@ abstract class Customer
     public function getProductPerm($typeProduct)
     {
         switch ($typeProduct) {
-            case InterfaceProduct::BASIC_PRODUCT:
+            case InterfaceProduct::BASIC_PRODUCT_TYPE:
                 return $this->basicProduct;
-            case InterfaceProduct::UNIQUE_PRODUCT:
+            case InterfaceProduct::UNIQUE_PRODUCT_TYPE:
                 return $this->uniqueProduct;
-            case InterfaceProduct::ADDITIONAL_PRODUCT:
+            case InterfaceProduct::ADDITIONAL_PRODUCT_TYPE:
                 return $this->additionalProduct;
             default:
                 return false;

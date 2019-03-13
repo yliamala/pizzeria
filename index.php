@@ -37,7 +37,7 @@ try{
     print_r( \app\pizzeria\Pizzeria::getPizzeriaList());
 // Create Order
     $order = new \app\order\Order($cart);
-    $order->getPizzeria(new \app\pizzeria\Pizzeria('City'));
+    $order->setPizzeria(new \app\pizzeria\Pizzeria('City', true));
     $payment = new \app\order\payment\Cash($order);
     $order->setPayment($payment);
 
@@ -58,6 +58,7 @@ try{
 
     // Save order
     (new \app\order\SaveOrder($order))->save();
+    new \app\order\SendEmail($order);
 
 
     $order->changeStatus($cook, \app\order\Order::CONFIRMED_STATUS);
@@ -68,6 +69,10 @@ try{
     // Paid order
     $order->setPaid($manager);
     //print_r($order);exit;
+
+    // Service
+    $service = new \app\service\HolidayParty('2019-03-24', 3, 'street', '0984777332');
+    print_r($service->getPrice());exit;
 } catch (Exception $e) {
     echo 'Error: ';
     print_r($e->getMessage());

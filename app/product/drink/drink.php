@@ -7,7 +7,7 @@ class Drink implements InterfaceProduct
 {
     private $volume;
     private $name;
-    private $type = InterfaceProduct::BASIC_PRODUCT;
+    private $type = InterfaceProduct::BASIC_PRODUCT_TYPE;
 
     public function __construct($name, $volume)
     {

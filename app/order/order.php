@@ -48,9 +48,14 @@ class Order
         return ($this->getSubTotalAmount() - $this->getDiscount());
     }
 
-    public function getPizzeria($pizzeria)
+    public function setPizzeria($pizzeria)
     {
         $this->pizzeria = $pizzeria;
+    }
+
+    public function getPizzeria()
+    {
+        return $this->pizzeria;
     }
 
     public function setPayment(AbstractPayment $pay)
