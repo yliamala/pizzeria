@@ -2,9 +2,11 @@
 
 namespace app\product\pizza;
 
+use app\order\Nameable;
+use app\order\Priceable;
 use app\product\InterfaceProduct;
 
-class Pizza implements InterfaceProduct
+class Pizza implements InterfaceProduct, Priceable, Nameable
 {
     private $dough;
     private $size;
@@ -62,5 +64,11 @@ class Pizza implements InterfaceProduct
     {
         return $this->type;
     }
+
+    public function getName()
+    {
+        return self::class;
+    }
+
 
 }

@@ -8,9 +8,5 @@ interface InterfaceProduct
     const UNIQUE_PRODUCT_TYPE = 'unique';
     const ADDITIONAL_PRODUCT_TYPE = 'additional';
 
-    public function getPrice();
-
-    public function getDescription();
-
     public function getType();
 }

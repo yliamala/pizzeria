@@ -7,9 +7,10 @@ use app\user\Employee;
 
 class Order
 {
-    const SUBMITTED_STATUS = 'Submitted';
-    const CONFIRMED_STATUS = 'Confirmed';
-    const DELIVERED_STATUS = 'Delivered';
+    const SUBMITTED_STATUS = 1;
+    const CONFIRMED_STATUS = 2;
+    const DELIVERED_STATUS = 3;
+
     /**
      * @var Cart
      */
@@ -22,20 +23,17 @@ class Order
     private $discount = 0;
     private $paid = false;
 
-    public function __construct(Cart $cart)
+    private $discountStrategy;
+
+    public function __construct(Cart $cart, DiscountStrategyInterface $discountStrategy)
     {
         $this->cart = $cart;
-        $this->setDiscount();
+        $this->discountStrategy = $discountStrategy;
     }
 
     public function getSubTotalAmount()
     {
         return $this->cart->getTotalAmount();
-    }
-
-    public function setDiscount()
-    {
-        $this->discount = (new Discount($this))->getDiscount();
     }
 
     public function getDiscount()
@@ -45,7 +43,7 @@ class Order
 
     public function getTotalAmount()
     {
-        return ($this->getSubTotalAmount() - $this->getDiscount());
+        return ($this->cart->getTotalAmount() - ($this->cart->getTotalAmount() * $this->discountStrategy->getDiscount() / 100));
     }
 
     public function setPizzeria($pizzeria)
@@ -108,17 +106,18 @@ class Order
     {
         if (!$this->payment->getSetPaid()) throw new \Exception('For cash only.');
         if (!$employee->getAllowPaid()) throw new \Exception('You can not pay the order.');
+
         $this->paid = true;
     }
 
     public function changeStatus(Employee $employee, $status)
     {
-        if (($employee->getConfirmedOrder() && $status == Order::CONFIRMED_STATUS) ||
-            ($employee->getDeliveredOrder() && $status == Order::DELIVERED_STATUS))
-        {
-            $this->setStatus($status);
-        } else {
+        // @todo change to state machine pattern with ACL
+        if (!(($employee->getConfirmedOrder() && $status == self::CONFIRMED_STATUS) ||
+            ($employee->getDeliveredOrder() && $status == self::DELIVERED_STATUS))) {
             throw new \Exception('You can not change status.');
         }
+
+        $this->setStatus($status);
     }
 }

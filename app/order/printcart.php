@@ -16,10 +16,10 @@ class PrintCart
 
     public function printCart()
     {
-        if (!count($this->cart->getItem())) return;
-
         $i = 1;
-        foreach ($this->cart->getItem() as $item) {
+        /** @var Item $item */
+        foreach ($this->cart as $item) {
+            // @todo remake by sprintf();
             echo $i .'. ' . $item->getDescription() .
                 '; Qty: ' . $item->getQty() . '; Unit Price:' . $item->getUnitPrice() . '; Price: ' . $item->getPrice() .". \n";
             $i++;
