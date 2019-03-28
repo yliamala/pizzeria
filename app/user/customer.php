@@ -29,7 +29,7 @@ abstract class Customer
         $this->name = $name;
         $this->phone = $phone;
     }
-    
+
     public function getProductPerm($typeProduct)
     {
         switch ($typeProduct) {

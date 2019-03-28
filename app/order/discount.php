@@ -2,22 +2,27 @@
 
 namespace app\order;
 
-
-class Discount
+interface DiscountStrategyInterface
 {
-    private $discount = 10;
-    private $maxAmount = 3000;
-    private $order;
-    
-    public function __construct(Order $order)
+    const DEFAULT_DISCOUNT = 10;
+    const MAX_DISCOUNT = 20;
+
+    public function getDiscount(): int;
+}
+
+class DefaultStrategy implements DiscountStrategyInterface
+{
+    public function getDiscount(): int
     {
-        $this->order = $order;
+        return DiscountStrategyInterface::DEFAULT_DISCOUNT;
     }
-    
-    public function getDiscount()
+}
+
+class VipStrategy implements DiscountStrategyInterface
+{
+    public function getDiscount(): int
     {
-        if ($this->order->getSubTotalAmount() >= $this->maxAmount) {
-            return $this->discount / 100 * $this->order->getSubTotalAmount();
-        }
+        return DiscountStrategyInterface::MAX_DISCOUNT;
     }
+
 }

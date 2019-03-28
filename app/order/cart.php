@@ -2,46 +2,26 @@
 
 namespace app\order;
 
-
-use app\product\InterfaceProduct;
-use app\user\Customer;
-
-class Cart
+class Cart implements CartInterface
 {
     private $totalAmount = 0;
-    private $items;
-    /**
-     * @var Customer
-     */
-    private $customer;
+    /** @var Quantity[] */
+    private $items = [];
 
-    public function __construct(Customer $customer)
+    public function addItem(CartItemInterface $cartItem): self
     {
-        $this->customer = $customer;
+        $this->items[$cartItem->getHash()] = new Quantity($cartItem, 1);
+        $this->totalAmount += $cartItem->getPrice();
+
+        return $this;
     }
 
-    public function addProduct(InterfaceProduct $product, $qty = 1)
+    public function removeItem(CartItemInterface $cartItem)
     {
-        if (!$this->checkProduct($product)) throw new \Exception('You do not have access to this product.');
-        $item = new Item($product, $qty);
-        $this->items[$item->getId()] = $item;
-        $this->addItemTotalAmount($item);
-    }
-
-    private function checkProduct(InterfaceProduct $product)
-    {
-        return $this->customer->getProductPerm($product->getType());
-    }
-
-    private function addItemTotalAmount(Item $item)
-    {
-        $this->totalAmount += $item->getPrice();
-    }
-
-    public function deleteProduct($id)
-    {
-        unset($this->items[$id]);
+        unset($this->items[$cartItem->getHash()]);
         $this->reCalculateTotalAmount();
+
+        return $this;
     }
 
     private function reCalculateTotalAmount()
@@ -50,22 +30,39 @@ class Cart
         if (!count($this->items)) return;
 
         foreach ($this->items as $item) {
-            $this->totalAmount += $item->getPrice();
+            $this->totalAmount += $item->getSum();
         }
     }
 
-    public function getTotalAmount()
+    public function getTotalSum(): float
     {
         return $this->totalAmount;
     }
 
-    public function getItem()
+
+    public function current(): CartItemInterface
     {
-        return $this->items;
+        // TODO: Implement valid() method.
     }
 
-    public function getCustomer()
+    public function next(): CartItemInterface
     {
-        return $this->customer;
+        // TODO: Implement valid() method.
     }
+
+    public function key()
+    {
+        // TODO: Implement valid() method.
+    }
+
+    public function valid()
+    {
+        // TODO: Implement valid() method.
+    }
+
+    public function rewind()
+    {
+        // TODO: Implement rewind() method.
+    }
+
 }

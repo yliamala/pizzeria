@@ -25,7 +25,7 @@ class Validation
 
     private function setMinTotalAmount()
     {
-        $typeCustomer = $this->order->getCart()->getCustomer()->getType();
+//        $typeCustomer = $this->order->getCart()->getCustomer()->getType();
         if (!empty($this->minTotalCustomer[$typeCustomer])) {
             $this->minTotalAmount = $this->minTotalCustomer[$typeCustomer];
         }

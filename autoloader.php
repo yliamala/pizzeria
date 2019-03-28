@@ -1,6 +1,12 @@
 <?php
 
 spl_autoload_register(function ($class) {
-    $parts = str_replace(['\\'], ['/'], $class);
-    require_once (__DIR__ . '/' . strtolower($parts) . '.php');
+    $parts = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+    $filePath = __DIR__ . DIRECTORY_SEPARATOR . strtolower($parts) . '.php';
+
+    if (!file_exists($filePath)) {
+        throw new Exception(sprintf("Class %s not exist by %s path", $class, $filePath));
+    }
+
+    require_once($filePath);
 });
