@@ -11,7 +11,6 @@ class SaveOrder
     public function __construct(Order $order)
     {
         $this->order = $order;
-        new Validation($order);
     }
 
     public function save()

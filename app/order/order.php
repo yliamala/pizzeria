@@ -33,17 +33,17 @@ class Order
 
     public function getSubTotalAmount()
     {
-        return $this->cart->getTotalAmount();
+        return $this->cart->getTotalSum();
     }
 
     public function getDiscount()
     {
-        return $this->discount;
+        return $this->discountStrategy->getDiscount();
     }
 
     public function getTotalAmount()
     {
-        return ($this->cart->getTotalAmount() - ($this->cart->getTotalAmount() * $this->discountStrategy->getDiscount() / 100));
+        return ($this->cart->getTotalSum() - ($this->cart->getTotalSum() * $this->discountStrategy->getDiscount() / 100));
     }
 
     public function setPizzeria($pizzeria)

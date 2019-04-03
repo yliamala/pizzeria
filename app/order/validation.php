@@ -11,23 +11,19 @@ class Validation
     private $minTotalAmount = 700;
     private $minTotalCustomer = [Customer::VIP => 500];
 
-    public function __construct(Order $order)
+    public function __construct(Order $order, Customer $customer)
     {
         $this->order = $order;
-        $this->setMinTotalAmount();
-        if (!$this->validTotalAmount()) throw new \Exception('Minimum order amount ' . $this->minTotalAmount);
+        if (!empty($this->minTotalCustomer[$customer->getType()])) {
+            $this->minTotalAmount = $this->minTotalCustomer[$customer->getType()];
+        }
+        if (!$this->validTotalAmount()) {
+            throw new \Exception('Minimum order amount ' . $this->minTotalAmount);
+        }
     }
     
     private function validTotalAmount()
     {
         return ($this->order->getTotalAmount() >= $this->minTotalAmount);
-    }
-
-    private function setMinTotalAmount()
-    {
-//        $typeCustomer = $this->order->getCart()->getCustomer()->getType();
-        if (!empty($this->minTotalCustomer[$typeCustomer])) {
-            $this->minTotalAmount = $this->minTotalCustomer[$typeCustomer];
-        }
     }
 }

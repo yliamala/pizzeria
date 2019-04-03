@@ -1,9 +1,11 @@
 <?php
 namespace app\product\drink;
 
+use app\order\CartItemInterface;
+use app\order\Nameable;
 use app\product\InterfaceProduct;
 
-class Drink implements InterfaceProduct
+class Drink implements InterfaceProduct, Nameable, CartItemInterface
 {
     private $volume;
     private $name;
@@ -38,5 +40,10 @@ class Drink implements InterfaceProduct
     public function getType()
     {
         return $this->type;
+    }
+
+    public function getHash()
+    {
+        return uniqid();
     }
 }

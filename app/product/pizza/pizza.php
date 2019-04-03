@@ -2,11 +2,12 @@
 
 namespace app\product\pizza;
 
+use app\order\CartItemInterface;
 use app\order\Nameable;
 use app\order\Priceable;
 use app\product\InterfaceProduct;
 
-class Pizza implements InterfaceProduct, Priceable, Nameable
+class Pizza implements InterfaceProduct, Nameable, CartItemInterface
 {
     private $dough;
     private $size;
@@ -68,6 +69,11 @@ class Pizza implements InterfaceProduct, Priceable, Nameable
     public function getName()
     {
         return self::class;
+    }
+
+    public function getHash()
+    {
+        return uniqid();
     }
 
 

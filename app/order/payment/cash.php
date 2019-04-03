@@ -4,6 +4,7 @@ namespace app\order\payment;
 
 
 use app\order\Order;
+use app\user\Vip;
 
 class Cash extends AbstractPayment
 {
@@ -14,7 +15,7 @@ class Cash extends AbstractPayment
 
     public function enable(Order $order)
     {
-        $customer = $order->getCart()->getCustomer();
+        $customer = new Vip('Test', '09872227733');
         if ($order->getTotalAmount() >= self::MAX_AMOUNT && !$customer->getAlwaysCash()) {
             return false;
         }

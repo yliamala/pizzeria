@@ -17,12 +17,13 @@ class PrintCart
     public function printCart()
     {
         $i = 1;
+        $template = "%d . %s; Qty: %d; Unit Price: %g; Price: %g;\n";
         /** @var Item $item */
-        foreach ($this->cart as $item) {
-            // @todo remake by sprintf();
-            echo $i .'. ' . $item->getDescription() .
-                '; Qty: ' . $item->getQty() . '; Unit Price:' . $item->getUnitPrice() . '; Price: ' . $item->getPrice() .". \n";
+        foreach ($this->cart->getItems() as $item) {
+            echo sprintf($template, $i, $item->getItem()->getName(), $item->getQuantity(),
+                $item->getItem()->getPrice(), $item->getItem()->getPrice() * $item->getQuantity());
             $i++;
         }
+        echo "Total sum: " . $this->cart->getTotalSum() . "\n";
     }
 }

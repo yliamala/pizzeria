@@ -25,4 +25,9 @@ class Quantity
         return $this->item;
     }
 
+    public function getQuantity()
+    {
+        return $this->qty;
+    }
+
 }

@@ -39,6 +39,10 @@ class Cart implements CartInterface
         return $this->totalAmount;
     }
 
+    public function getItems()
+    {
+        return $this->items;
+    }
 
     public function current(): CartItemInterface
     {

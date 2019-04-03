@@ -2,9 +2,11 @@
 
 namespace app\product\burger;
 
+use app\order\CartItemInterface;
+use app\order\Nameable;
 use app\product\InterfaceProduct;
 
-class Burger implements InterfaceProduct
+class Burger implements InterfaceProduct, Nameable, CartItemInterface
 {
     private $bun;
     private $degreeRoasting;
@@ -82,5 +84,15 @@ class Burger implements InterfaceProduct
     public function getType()
     {
         return $this->type;
+    }
+
+    public function getName()
+    {
+        return self::class;
+    }
+
+    public function getHash()
+    {
+        return uniqid();
     }
 }
