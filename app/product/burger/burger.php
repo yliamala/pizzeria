@@ -2,11 +2,11 @@
 
 namespace app\product\burger;
 
-use app\order\CartItemInterface;
+use app\order\CartProductInterface;
 use app\order\Nameable;
 use app\product\InterfaceProduct;
 
-class Burger implements InterfaceProduct, Nameable, CartItemInterface
+class Burger implements InterfaceProduct, Nameable, CartProductInterface
 {
     private $bun;
     private $degreeRoasting;

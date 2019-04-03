@@ -3,7 +3,7 @@
 namespace app\order;
 
 
-class Surprise
+class SurpriseStrategy
 {
     private $maxAmount = 1000;
     private $order;

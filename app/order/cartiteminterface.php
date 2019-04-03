@@ -2,7 +2,11 @@
 
 namespace app\order;
 
-interface CartItemInterface extends Priceable, Hashable
+interface CartItemInterface
 {
+    public function getSum(): float;
 
+    public function getItem(): CartProductInterface;
+
+    public function getQuantity(): int;
 }

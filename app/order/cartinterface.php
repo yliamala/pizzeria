@@ -6,9 +6,9 @@ namespace app\order;
 interface CartInterface extends \Iterator
 {
 
-    public function addItem(CartItemInterface $cartItem, float $qty);
+    public function addItem(CartProductInterface $cartProduct, float $qty);
 
-    public function removeItem(CartItemInterface $cartItem);
+    public function removeItem(CartProductInterface $cartItem);
 
     public function getTotalSum(): float;
 }

@@ -2,14 +2,14 @@
 
 namespace app\order;
 
-class Quantity
+class CartItem implements CartItemInterface
 {
     /** @var float */
     private $qty;
-    /** @var CartItemInterface */
+    /** @var CartProductInterface */
     private $item;
 
-    public function __construct(CartItemInterface $priceable, float $qty)
+    public function __construct(CartProductInterface $priceable, float $qty)
     {
         $this->qty = $qty;
         $this->item = $priceable;
@@ -20,12 +20,12 @@ class Quantity
         return $this->item->getPrice() * $this->qty;
     }
 
-    public function getItem(): CartItemInterface
+    public function getItem(): CartProductInterface
     {
         return $this->item;
     }
 
-    public function getQuantity()
+    public function getQuantity(): int
     {
         return $this->qty;
     }

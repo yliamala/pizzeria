@@ -1,20 +1,29 @@
 <?php
+
 namespace app\product\drink;
 
-use app\order\CartItemInterface;
+use app\order\CartProductInterface;
 use app\order\Nameable;
 use app\product\InterfaceProduct;
 
-class Drink implements InterfaceProduct, Nameable, CartItemInterface
+// @todo split to files
+interface BottleInterface
+{
+    public function getVolume(): float;
+}
+
+class Drink implements InterfaceProduct, Nameable, CartProductInterface, BottleInterface
 {
     private $volume;
     private $name;
     private $type = InterfaceProduct::BASIC_PRODUCT_TYPE;
+    private $drinkPrice;
 
-    public function __construct($name, $volume)
+    public function __construct(StrategyFactoryInterface $strategyBuilder, string $name, float $volume)
     {
         $this->volume = $volume;
         $this->name = $name;
+        $this->drinkPrice = $strategyBuilder->getStrategy($this);
     }
 
     public function getName()
@@ -22,14 +31,14 @@ class Drink implements InterfaceProduct, Nameable, CartItemInterface
         return $this->name;
     }
 
-    public function getVolume()
+    public function getVolume(): float
     {
         return $this->volume;
     }
 
     public function getPrice()
     {
-        return (new PriceDrink($this))->getPrice();
+        return $this->drinkPrice->getPrice();
     }
 
     public function getDescription()
