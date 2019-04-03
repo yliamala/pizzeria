@@ -56,8 +56,7 @@ try {
 
 // Save order
     $vip = new \app\user\Vip('Julia', '09872227733');
-    new \app\order\Validation($order, $vip);
-    (new \app\order\SaveOrder($order))->save();
+    (new \app\order\SaveOrder($order, new \app\order\ValidationMinTotal($order, $vip)))->save();
     new \app\order\SendEmail($order);
 
 

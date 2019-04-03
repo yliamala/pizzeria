@@ -8,8 +8,11 @@ class SaveOrder
     private $order;
     private $path = __DIR__ . '/ordersfile/';
 
-    public function __construct(Order $order)
+    public function __construct(Order $order, ValidationInterface $valid)
     {
+        if (!$valid->valid()) {
+            throw new \Exception('Not valid!');
+        }
         $this->order = $order;
     }
 
