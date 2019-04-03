@@ -12,16 +12,11 @@ try {
 
     $drink = new \app\product\drink\Drink('coca-cola', 1);
 
-// Create user
-    $vip = new \app\user\Vip('Julia', '09872227733');
 // Create cart
-    $cart = new \app\order\Cart($vip);
+    $cart = new \app\order\Cart();
 
 // Add product
-    $cart->addItem($pizza);
-    $cart->addItem($pizza);
-    $cart->addItem($pizza);
-    $cart->addItem($pizza);
+    $cart->addItem($pizza, 4);
     $cart->addItem($burger);
     $cart->addItem($drink);
 
@@ -60,6 +55,7 @@ try {
     echo 'Total amount: ' . $order->getTotalAmount() . "\n";
 
 // Save order
+    $vip = new \app\user\Vip('Julia', '09872227733');
     new \app\order\Validation($order, $vip);
     (new \app\order\SaveOrder($order))->save();
     new \app\order\SendEmail($order);

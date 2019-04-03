@@ -8,10 +8,10 @@ class Cart implements CartInterface
     /** @var Quantity[] */
     private $items = [];
 
-    public function addItem(CartItemInterface $cartItem): self
+    public function addItem(CartItemInterface $cartItem, float $qty = 1): self
     {
-        $this->items[$cartItem->getHash()] = new Quantity($cartItem, 1);
-        $this->totalAmount += $cartItem->getPrice();
+        $this->items[$cartItem->getHash()] = new Quantity($cartItem, $qty);
+        $this->totalAmount += $cartItem->getPrice() * $qty;
 
         return $this;
     }
