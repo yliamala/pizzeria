@@ -2,6 +2,7 @@
 
 namespace app\product;
 
+// @todo ???
 interface InterfaceProduct
 {
     const BASIC_PRODUCT_TYPE = 'basic';

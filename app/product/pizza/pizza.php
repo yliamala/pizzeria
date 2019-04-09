@@ -2,12 +2,12 @@
 
 namespace app\product\pizza;
 
-use app\order\CartItemInterface;
+use app\order\CartProductInterface;
 use app\order\Nameable;
 use app\order\Priceable;
 use app\product\InterfaceProduct;
 
-class Pizza implements InterfaceProduct, Nameable, CartItemInterface
+class Pizza implements InterfaceProduct, Nameable, CartProductInterface
 {
     private $dough;
     private $size;
@@ -50,14 +50,18 @@ class Pizza implements InterfaceProduct, Nameable, CartItemInterface
         return (new WeightPizza($this))->getWeight();
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         $description = 'Pizza with ' . $this->getDough() . ' dough, size ' . $this->getSize() . ' ';
-        if (!count($this->getIngredient())) return;
-        foreach ($this->getIngredient() as $ingredient) {
-            $description .= ', with ' . $ingredient->getName();
+
+        if (count($this->getIngredient())) {
+            foreach ($this->getIngredient() as $ingredient) {
+                $description .= ', with ' . $ingredient->getName();
+            }
         }
+
         $description .= '.';
+
         return $description;
     }
 

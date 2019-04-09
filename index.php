@@ -44,7 +44,7 @@ try {
     $manager = new \app\user\Manager('Michel');
     $order->setManager($manager);
 
-    $surprise = new \app\order\Surprise($order);
+    $surprise = new \app\order\SurpriseStrategy($order);
     if ($surprise) {
         $drink = new \app\product\drink\DrinkSurprise('coca-cola', 0.5);
         $order->getCart()->addItem($drink);

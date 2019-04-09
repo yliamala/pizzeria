@@ -1,22 +1,23 @@
 <?php
 
 namespace app\order;
+// @todo change all namespaces to CamelCase and name of files
 
 class Cart implements CartInterface
 {
     private $totalAmount = 0;
-    /** @var Quantity[] */
+    /** @var CartItem[] */
     private $items = [];
 
-    public function addItem(CartItemInterface $cartItem, float $qty = 1): self
+    public function addItem(CartProductInterface $cartProduct, float $qty = 1): self
     {
-        $this->items[$cartItem->getHash()] = new Quantity($cartItem, $qty);
-        $this->totalAmount += $cartItem->getPrice() * $qty;
+        $this->items[$cartProduct->getHash()] = new CartItem($cartProduct, $qty);
+        $this->totalAmount += $cartProduct->getPrice() * $qty;
 
         return $this;
     }
 
-    public function removeItem(CartItemInterface $cartItem)
+    public function removeItem(CartProductInterface $cartItem)
     {
         unset($this->items[$cartItem->getHash()]);
         $this->reCalculateTotalAmount();
@@ -44,12 +45,12 @@ class Cart implements CartInterface
         return $this->items;
     }
 
-    public function current(): CartItemInterface
+    public function current(): CartProductInterface
     {
         // TODO: Implement valid() method.
     }
 
-    public function next(): CartItemInterface
+    public function next(): CartProductInterface
     {
         // TODO: Implement valid() method.
     }

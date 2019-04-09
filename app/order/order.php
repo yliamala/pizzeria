@@ -104,8 +104,12 @@ class Order
 
     public function setPaid(Employee $employee)
     {
-        if (!$this->payment->getSetPaid()) throw new \Exception('For cash only.');
-        if (!$employee->getAllowPaid()) throw new \Exception('You can not pay the order.');
+        if (!$this->payment->getSetPaid()) {
+            throw new \Exception('For cash only.');
+        }
+        if (!$employee->getAllowPaid()) {
+            throw new \Exception('You can not pay the order.');
+        }
 
         $this->paid = true;
     }
