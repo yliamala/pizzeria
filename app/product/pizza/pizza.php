@@ -1,6 +1,6 @@
 <?php
 
-namespace app\product\pizza;
+namespace App\Product\Pizza;
 
 use app\order\CartProductInterface;
 use app\order\Nameable;

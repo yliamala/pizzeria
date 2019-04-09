@@ -1,6 +1,6 @@
 <?php
 
-namespace app\order;
+namespace App\Order;
 
 class CartItem implements CartItemInterface
 {

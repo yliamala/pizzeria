@@ -1,6 +1,6 @@
 <?php
 
-namespace app\order;
+namespace App\Order;
 // @todo change all namespaces to CamelCase and name of files
 
 class Cart implements CartInterface

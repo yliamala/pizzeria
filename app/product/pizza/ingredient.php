@@ -1,6 +1,6 @@
 <?php
 
-namespace app\product\pizza;
+namespace App\Product\Pizza;
 
 
 class Ingredient

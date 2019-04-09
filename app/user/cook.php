@@ -1,6 +1,6 @@
 <?php
 
-namespace app\user;
+namespace App\User;
 
 
 use app\order\Order;

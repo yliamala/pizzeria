@@ -1,7 +1,7 @@
 <?php
 
 // @todo remove
-namespace app\product\drink;
+namespace App\Product\Drink;
 
 
 class PriceDrink

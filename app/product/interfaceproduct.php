@@ -1,6 +1,6 @@
 <?php
 
-namespace app\product;
+namespace App\Product;
 
 // @todo ???
 interface InterfaceProduct

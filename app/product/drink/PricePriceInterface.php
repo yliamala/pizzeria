@@ -2,7 +2,7 @@
 
 // @todo split to files by each class/interface
 // @todo make analog to other products
-namespace app\product\drink;
+namespace App\Product\Drink;
 
 interface PriceStrategyInterface
 {

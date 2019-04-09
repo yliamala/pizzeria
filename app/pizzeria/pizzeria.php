@@ -1,6 +1,6 @@
 <?php
 
-namespace app\pizzeria;
+namespace App\Pizzeria;
 
 class Pizzeria
 {

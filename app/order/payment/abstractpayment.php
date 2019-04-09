@@ -1,6 +1,6 @@
 <?php
 
-namespace app\order\payment;
+namespace App\Order\Payment;
 
 
 use app\order\Order;

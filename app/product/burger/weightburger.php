@@ -1,6 +1,6 @@
 <?php
 
-namespace app\product\burger;
+namespace App\Product\Burger;
 
 
 class WeightBurger

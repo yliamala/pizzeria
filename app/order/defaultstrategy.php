@@ -2,7 +2,7 @@
 
 // @todo refactor
 
-namespace app\order;
+namespace App\Order;
 
 interface DiscountStrategyInterface
 {

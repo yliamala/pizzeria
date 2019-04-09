@@ -1,8 +1,8 @@
 <?php
 
-namespace app\user;
+namespace App\User;
 
-use app\product\InterfaceProduct;
+use App\Product\InterfaceProduct;
 
 abstract class Customer
 {

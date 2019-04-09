@@ -1,6 +1,6 @@
 <?php
 
-namespace app\order;
+namespace App\Order;
 
 use app\order\payment\AbstractPayment;
 use app\user\Employee;

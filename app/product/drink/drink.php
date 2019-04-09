@@ -1,6 +1,6 @@
 <?php
 
-namespace app\product\drink;
+namespace App\Product\Drink;
 
 use app\order\CartProductInterface;
 use app\order\Nameable;
