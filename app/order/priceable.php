@@ -3,7 +3,7 @@
 namespace App\Order;
 
 
-interface Priceable
+interface PriceAble
 {
     public function getPrice();
 }

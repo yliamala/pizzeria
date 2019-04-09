@@ -3,7 +3,7 @@
 namespace App\Order;
 
 
-interface Nameable
+interface NameAble
 {
     public function getName();
 

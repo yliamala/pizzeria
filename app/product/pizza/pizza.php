@@ -3,11 +3,11 @@
 namespace App\Product\Pizza;
 
 use app\order\CartProductInterface;
-use app\order\Nameable;
-use app\order\Priceable;
+use app\order\NameAble;
+use app\order\PriceAble;
 use app\product\InterfaceProduct;
 
-class Pizza implements InterfaceProduct, Nameable, CartProductInterface
+class Pizza implements InterfaceProduct, NameAble, CartProductInterface
 {
     private $dough;
     private $size;

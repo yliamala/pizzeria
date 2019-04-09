@@ -3,7 +3,7 @@
 namespace App\Product\Drink;
 
 use app\order\CartProductInterface;
-use app\order\Nameable;
+use app\order\NameAble;
 use app\product\InterfaceProduct;
 
 // @todo split to files
@@ -12,7 +12,7 @@ interface BottleInterface
     public function getVolume(): float;
 }
 
-class Drink implements InterfaceProduct, Nameable, CartProductInterface, BottleInterface
+class Drink implements InterfaceProduct, NameAble, CartProductInterface, BottleInterface
 {
     private $volume;
     private $name;

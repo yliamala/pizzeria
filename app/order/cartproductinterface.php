@@ -2,7 +2,7 @@
 
 namespace App\Order;
 
-interface CartProductInterface extends Priceable, Hashable
+interface CartProductInterface extends PriceAble, HashAble
 {
 
 }

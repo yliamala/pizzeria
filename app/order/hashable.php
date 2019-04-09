@@ -3,7 +3,7 @@
 namespace App\Order;
 
 
-interface Hashable
+interface HashAble
 {
     public function getHash();
 
